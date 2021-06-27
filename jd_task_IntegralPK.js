@@ -16,9 +16,9 @@ async function main(id) {
         'url': 'https://jdjoy.jd.com/saas/framework/encrypt/pin?appId=dafbe42d5bff9d82298e5230eb8c3f79',
         'form': ' '
     }
-    await $.curl(params)
-    let data = $.source.data;
     try {
+        await $.curl(params)
+        let data = $.source.data;
         $.lkEPin = data.lkEPin;
         $.lkToken = data.lkToken;
         let myScore = await getScore($.lkEPin);
