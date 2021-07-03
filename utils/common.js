@@ -2,7 +2,7 @@ let request = require('request');
 let crypto = require('crypto');
 let qs = require('querystring');
 let urls = require('url');
-let path = require('path'); 
+let path = require('path');
 let notify = require('./sendNotify');
 let eval = require("./eval");
 class env {
@@ -125,8 +125,25 @@ class env {
         var md5 = crypto.createHash('md5');
         var result = md5.update(encryptString.toString()).digest('hex');
         return result;
-    } 
+    }
+    compare(property) {
+        return function(a, b) {
+            var value1 = a[property];
+            var value2 = b[property];
+            return value1 - value2;
+        }
+    }
+    filename(file, rename = '') {
+        if (!this.runfile) {
+            this.runfile = path.basename(file).replace(".js", '')
+        }
+        if (rename) {
+            rename = `-${rename}`;
+        }
+        return path.basename(file).replace(".js", rename);
+    }
 }
 module.exports = {
-    env,eval
+    env,
+    eval
 }
