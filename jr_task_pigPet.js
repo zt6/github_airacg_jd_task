@@ -80,18 +80,14 @@ async function main(id) {
     await $.wait(2000)
     console.log("\n领取奖励")
     for (let i of $.haskey(pigPetMissionList, 'resultData.resultData.missions')) {
-        if (i.status == 3) {
-            await work('pigPetDoMission', {
-                "source": 2,
-                "mid": i.mid,
-                "channelLV": "",
-                "riskDeviceParam": "{}"
-            })
-            console.log(i.missionName, $.source.resultData.resultData)
-            await $.wait(2000)
-        } else {
-            console.log(i.missionName, "已领取")
-        }
+        await work('pigPetDoMission', {
+            "source": 2,
+            "mid": i.mid,
+            "channelLV": "",
+            "riskDeviceParam": "{}"
+        })
+        console.log(i.missionName, $.source.resultData.resultData)
+        await $.wait(2000)
     }
     for (let z of Array(5)) {
         await work('pigPetOpenBox', {
