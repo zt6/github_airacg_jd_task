@@ -26,10 +26,13 @@ async function prepare() {
         } catch (e) {}
     }
 }
-async function main(id) {  
-    try { 
-        let url=`https://api.m.jd.com/client.action?functionId=signGroupHelp&body={"activeType":2,"groupCode":"${id.groupCode}","shareCode":"${id.shareCode}","activeId":"${id.activeId}","source":"guest"}&appid=ld&client=apple&clientVersion=9.5.4&networkType=wifi&osVersion=13.7&uuid=7b01d4690ef13716984dcfcf96068f36b41f6c51&openudid=7b01d4690ef13716984dcfcf96068f36b41f6c51`; 
+async function main(id) {
+    common.assert(id.shareCode, "没有可助力ID")
+    try {
+        let url = `https://api.m.jd.com/client.action?functionId=signGroupHelp&body={"activeType":2,"groupCode":"${id.groupCode}","shareCode":"${id.shareCode}","activeId":"${id.activeId}","source":"guest"}&appid=ld&client=apple&clientVersion=9.5.4&networkType=wifi&osVersion=13.7&uuid=7b01d4690ef13716984dcfcf96068f36b41f6c51&openudid=7b01d4690ef13716984dcfcf96068f36b41f6c51`;
         await $.curl(url)
         console.log($.source.data.helpToast)
-    } catch (e) {}
-} 
+    } catch (e) {
+        console.log(e.message)
+    }
+}

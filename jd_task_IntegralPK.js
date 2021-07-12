@@ -22,7 +22,7 @@ async function prepare() {
             }
             await $.curl(params)
             let data = $.source.data;
-            let n = cookies['all'].length > 2 ? 3 : 5; 
+            let n = cookies['all'].length > 2 ? 3 : 5;
             for (let i = 1; i < n; i++) {
                 let fUrl = `https://pengyougou.m.jd.com/like/jxz/getUserFriendsPage?actId=9&pageNo=${i}&pageSize=10&appId=dafbe42d5bff9d82298e5230eb8c3f79&lkEPin=${data.lkEPin}`
                 await $.curl(fUrl)
@@ -77,7 +77,7 @@ async function main(id) {
         }
         await getBoxRewardInfo();
     } catch (e) {
-        console.log("当前任务出错")
+        console.log(e.message)
     }
 }
 async function getScore(lkEPin) {
