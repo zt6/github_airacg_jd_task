@@ -5,12 +5,12 @@ function mainEval($) {
     cookies={
         'all':jdcookie,
         'help': typeof(help) != 'undefined' ? [...jdcookie].splice(0,parseInt(help)):[]
-    }  
+    }
     taskCookie=cookies['all']
     console.log(\`======================本次任务共\${taskCookie.length}个京东账户Cookie======================\\n\`)
     try{
-        await prepare(); 
-        if ($.sharecode.length > 0) {  
+        await prepare();
+        if ($.sharecode.length > 0) {
             $.sharecode = $.sharecode.filter(d=>d && JSON.stringify(d)!='{}')
             console.log('助力码', $.sharecode )
         }
@@ -24,19 +24,24 @@ function mainEval($) {
             'user': $.user,
             'cookie': $.cookie
         }
-        if (!$.thread) {
-            console.log(\`\n******开始【京东账号\${$.index}】\${$.user} 任务*********\n\`); 
-            $.setCookie($.cookie) 
-        }
-        if ($.sharecode.length > 0) {
-            for (let smp of $.sharecode) {
-                smp = Object.assign({ ...info}, smp);
-                $.thread ? main(smp) : await main(smp);
+        try{
+            if (!$.thread) {
+                console.log(\`\n******开始【京东账号\${$.index}】\${$.user} 任务*********\n\`);
+                $.setCookie($.cookie)
             }
-        }else{ 
-            $.thread ? main(info) : await main(info);
+            if ($.sharecode.length > 0) {
+                for (let smp of $.sharecode) {
+                    smp = Object.assign({ ...info}, smp);
+                    $.thread ? main(smp) : await main(smp);
+                }
+            }else{
+                $.thread ? main(info) : await main(info);
+            }
         }
-       
+        catch(em){
+            console.log(em.message)
+        }
+
     }
     if (typeof(extra) != 'undefined') {
         console.log(\`============================开始运行额外任务============================\`)
@@ -45,8 +50,8 @@ function mainEval($) {
         }catch(e4){console.log(e4.message)}
     }
 })().catch((e) => {
-    console.log(\`❌ \${$.user}, 失败! 原因: \${e}!\`)
-}).finally(() => { 
+    console.log(e.message)
+}).finally(() => {
     if ($.message.length > 0) {
         $.notify($.message)
     }
