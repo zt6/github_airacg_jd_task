@@ -63,11 +63,11 @@ class env {
                 'url': params
             }
         }
-        if (params.url.match(/jd.com\/|jingxi.com\//)) {
+        // if (params.url.match(/jd.com\/|jingxi.com\//)) {
             // 只有访问京东链接才带cookie
             params = Object.assign({ ...this.options
             }, params);
-        }
+        // }
         params.method = params.body ? 'POST' : 'GET';
         if (params.ua) {
             this.options.headers['user-agent'] = params.ua;
