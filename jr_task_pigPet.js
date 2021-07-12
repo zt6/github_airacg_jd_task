@@ -50,7 +50,7 @@ async function main(id) {
         for (let i of $.haskey($.source, 'resultData.resultData.missions')) {
             if (i.status == 3) {
                 console.log("去做任务:", i.missionName)
-                let query = $.urlparse(i.url).query
+                let query = i.url ? $.urlparse(i.url).query : {}
                 await $.curl({
                     'url': 'https://ms.jr.jd.com/gw/generic/uc/h5/m/pigPetDoMission?_=1625996333719',
                     'form': `reqData={"source":2,"mid":"${i.mid}","channelLV":"","riskDeviceParam":"{}"}`
