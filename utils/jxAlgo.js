@@ -58,6 +58,14 @@ class jxAlgo {
         this.result = {}
         this.timestamp = Date.now();
     }
+    set(params = {}) {
+        for (let i in params) {
+            this[i] = params[i]
+        }
+    }
+    get(key){
+        return this[key]
+    }
     async dec(url) {
         if (!this.token) {
             this.fingerprint = generateFp();

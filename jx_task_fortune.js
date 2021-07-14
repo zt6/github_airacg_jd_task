@@ -10,7 +10,11 @@ $.setOptions({
     }
 });
 eval(common.eval.mainEval($));
-async function prepare() {}
+async function prepare() {
+    jxAlgo.set({
+        'appId': 10032
+    })
+}
 async function main() {
     $.ptag = `${$.rand(1001,9999)}.${$.rand(1,0)}.${$.rand(101,999)}`
     await work(`https://m.jingxi.com/jxbfd/user/QueryUserInfo?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&ddwTaskId=&strShareId=&strMarkList=guider_step%2Ccollect_coin_auth%2Cguider_medal%2Cguider_over_flag%2Cbuild_food_full%2Cbuild_sea_full%2Cbuild_shop_full%2Cbuild_fun_full%2Cmedal_guider_show%2Cguide_guider_show%2Cguide_receive_vistor&_stk=_cfd_t%2CbizCode%2CddwTaskId%2CdwEnv%2Cptag%2Csource%2CstrMarkList%2CstrShareId%2CstrZone&_ste=1`, 'QueryUserInfo')
