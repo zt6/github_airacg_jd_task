@@ -193,10 +193,10 @@ async function EmployTourGuide() {
             if (i.ddwRemainTm == 0) {
                 await work(`https://m.jingxi.com/jxbfd/user/EmployTourGuide?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=1626138375473&ptag=7155.9.47&strBuildIndex=${i.strBuildIndex}&dwIsFree=${i.dwFreeMin?1:0}&ddwConsumeCoin=${i.ddwCostCoin}&_stk=_cfd_t%2CbizCode%2CddwConsumeCoin%2CdwEnv%2CdwIsFree%2Cptag%2Csource%2CstrBuildIndex%2CstrZone&_ste=1`)
                 n++;
+                console.log("找导游", i.strGuideName, $.source.sErrMsg)
                 if (n == $.EmployTourGuideInfo.dwRemainGuideCnt) {
                     break
                 }
-                console.log("找导游", i.strGuideName, $.source.sErrMsg)
                 await $.wait(2000)
             }
         }
@@ -228,7 +228,7 @@ async function ComposeGame() {
     if ($.ComposeGameState.dwCurProgress < 8) {
         for (let i of Array(10 - $.ComposeGameState.dwCurProgress)) {
             await work(`https://m.jingxi.com/jxbfd/user/RealTmReport?__t=1626137321357&dwIdentityType=0&strBussKey=composegame&strMyShareId=${$.ComposeGameState.strMyShareId}&ddwCount=5&_=1626137321358&sceneval=2&g_login_type=1&callback=jsonpCBKC&g_ty=ls`)
-            await $.wait(6000)
+            await $.wait(10000)
             await work(`https://m.jingxi.com/jxbfd/user/ComposeGameAddProcess?__t=1626136784860&strZone=jxbfd&strBT=${$.ComposeGameState.strDT}&_stk=__t%2CstrBT%2CstrZone&_ste=1`)
             console.log("合成珍珠")
             console.log($.source)
