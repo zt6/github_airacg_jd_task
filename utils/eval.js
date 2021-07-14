@@ -7,6 +7,7 @@ function mainEval($) {
         'help': typeof(help) != 'undefined' ? [...jdcookie].splice(0,parseInt(help)):[]
     }
     taskCookie=cookies['all']
+    jxAlgo = new common.jxAlgo();
     console.log(\`======================本次任务共\${taskCookie.length}个京东账户Cookie======================\\n\`)
     try{
         await prepare();
