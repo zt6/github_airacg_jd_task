@@ -70,7 +70,7 @@ async function main() {
                 }
                 console.log("\n热气球旅客邀请")
                 for (let i of Array(data.dwTourGuideComTm)) {
-                    await work('https://m.jingxi.com/jxbfd/user/SpeedUp?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&strBuildIndex=fun&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrBuildIndex%2CstrZone&_ste=1')
+                    await work(`https://m.jingxi.com/jxbfd/user/SpeedUp?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&strBuildIndex=fun&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrBuildIndex%2CstrZone&_ste=1`)
                     if ($.haskey($.source, 'iRet', 1003)) {
                         console.log("暂停接客")
                         break
@@ -79,6 +79,10 @@ async function main() {
                 }
                 break;
             case 'StoryInfo':
+                if (data.Mermaid != null && data.Mermaid.strStoryId) {
+                    await work(`https://m.jingxi.com/jxbfd/story/MermaidOper?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&strStoryId=${data.Mermaid.strStoryId}&dwType=2&ddwTriggerDay=${data.Mermaid.ddwTriggerDay}&_stk=_cfd_t%2CbizCode%2CddwTriggerDay%2CdwEnv%2CdwType%2Cptag%2Csource%2CstrStoryId%2CstrZone&_ste=1`)
+                    console.log("约会获得:", $.haskey($.source, 'Data.ddwCoin'))
+                }
                 for (let k of $.haskey(data, 'StoryList') || []) {
                     if (k.Mermaid) {
                         console.log("\n美人鱼")
@@ -161,7 +165,7 @@ async function GetActTask() {
 }
 async function RubbishOper() {
     // 倒垃圾
-    await work("https://m.jingxi.com/jxbfd/story/QueryRubbishInfo?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1", 'QueryRubbishInfo')
+    await work(`https://m.jingxi.com/jxbfd/story/QueryRubbishInfo?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1`, 'QueryRubbishInfo')
     for (let i of $.QueryRubbishInfo.Data.StoryInfo.StoryList || []) {
         await work(`https://m.jingxi.com/jxbfd/story/RubbishOper?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&dwType=1&dwRewardType=0&_stk=_cfd_t%2CbizCode%2CdwEnv%2CdwRewardType%2CdwType%2Cptag%2Csource%2CstrZone&_ste=1`)
         for (let j = 1; j < 9; j++) {
@@ -172,7 +176,7 @@ async function RubbishOper() {
 }
 async function pickshell() {
     // 捡破烂
-    await work("https://m.jingxi.com/jxbfd/story/queryshell?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1", 'queryshell')
+    await work(`https://m.jingxi.com/jxbfd/story/queryshell?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1`, 'queryshell')
     if ($.haskey($.queryshell, 'Data.NormShell')) {
         for (let i in $.queryshell.Data.NormShell) {
             for (let j of Array($.queryshell.Data.NormShell[i].dwNum)) {
