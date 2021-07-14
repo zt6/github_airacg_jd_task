@@ -14,9 +14,9 @@ async function prepare() {}
 async function main() {
     await work("https://m.jingxi.com/jxbfd/user/QueryUserInfo?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=1626074314160&ptag=7155.9.47&ddwTaskId=&strShareId=&strMarkList=guider_step%2Ccollect_coin_auth%2Cguider_medal%2Cguider_over_flag%2Cbuild_food_full%2Cbuild_sea_full%2Cbuild_shop_full%2Cbuild_fun_full%2Cmedal_guider_show%2Cguide_guider_show%2Cguide_receive_vistor&_stk=_cfd_t%2CbizCode%2CddwTaskId%2CdwEnv%2Cptag%2Csource%2CstrMarkList%2CstrShareId%2CstrZone&_ste=1", 'QueryUserInfo')
     // if ($.haskey($.source, 'Fund.dwIsGetGift', 0)) {
-        // 领取百元奖励
-        // await work(`https://m.jingxi.com/jxbfd/user/drawpackprize?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=1626182628169&ptag=7155.9.47&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1`)
-        // console.log("领取百元奖励:", $.source.sErrMsg)
+    // 领取百元奖励
+    // await work(`https://m.jingxi.com/jxbfd/user/drawpackprize?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=1626182628169&ptag=7155.9.47&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1`)
+    // console.log("领取百元奖励:", $.source.sErrMsg)
     // }
     // 签到
     await work(`https://m.jingxi.com/jxbfd/story/GetTakeAggrPage?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=1626186921545&ptag=7155.9.47&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1`, 'GetTakeAggrPage')
@@ -232,7 +232,8 @@ async function ComposeGame() {
             await work(`https://m.jingxi.com/jxbfd/user/ComposeGameAddProcess?__t=1626136784860&strZone=jxbfd&strBT=${$.ComposeGameState.strDT}&_stk=__t%2CstrBT%2CstrZone&_ste=1`)
             console.log("合成珍珠")
             console.log($.source)
-            await work(`https://m.jingxi.com/jxbfd/user/ComposeGameState?__t=1626190374647&strZone=jxbfd&dwFirst=1&_=1626190374669&sceneval=2&g_login_type=1&callback=jsonpCBKA&g_ty=ls`, 'ComposeGameState')
+            // 这个不能加 避免错误死循环
+            // await work(`https://m.jingxi.com/jxbfd/user/ComposeGameState?__t=1626190374647&strZone=jxbfd&dwFirst=1&_=1626190374669&sceneval=2&g_login_type=1&callback=jsonpCBKA&g_ty=ls`, 'ComposeGameState')
         }
     }
     for (let i of $.ComposeGameState.stagelist) {
