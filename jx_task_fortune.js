@@ -232,7 +232,7 @@ async function ComposeGame() {
             await $.wait($.rand(5000, 9999))
             await work(`https://m.jingxi.com/jxbfd/user/RealTmReport?__t=${$.timestamp}&dwIdentityType=0&strBussKey=composegame&strMyShareId=${$.ComposeGameState.strMyShareId}&ddwCount=5&_=${$.timestamp}&sceneval=2&g_login_type=1&callback=jsonpCBKC&g_ty=ls`)
             console.log("随机等待")
-            await $.wait($.rand(10000, 25000))
+            await $.wait($.rand(10001, 25000))
             console.log("合成珍珠")
             await work(`https://m.jingxi.com/jxbfd/user/ComposeGameAddProcess?__t=${$.timestamp}&strZone=jxbfd&strBT=${$.ComposeGameState.strDT}&_stk=__t%2CstrBT%2CstrZone&_ste=1`)
             console.log($.source)
