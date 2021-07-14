@@ -20,15 +20,7 @@ async function main() {
     // console.log("领取百元奖励:", $.source.sErrMsg)
     // }
     // 签到
-    await work(`https://m.jingxi.com/jxbfd/story/GetTakeAggrPage?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1`, 'GetTakeAggrPage')
-    if ($.haskey($.GetTakeAggrPage, 'Data.Sign.SignList')) {
-        SignList = $.GetTakeAggrPage.Data.Sign.SignList
-        getSign = SignList[$.GetTakeAggrPage.Data.Sign.dwTodayId - 1]
-        if (getSign.dwStatus == 0) {
-            await work(`https://m.jingxi.com/jxbfd/story/RewardSign?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&ddwCoin=${getSign.ddwCoin}&ddwMoney=${getSign.ddwMoney}&dwPrizeType=${getSign.dwPrizeType}&strPrizePool=${getSign.strPrizePool}&dwPrizeLv=${getSign.dwBingoLevel}&_stk=_cfd_t%2CbizCode%2CddwCoin%2CddwMoney%2CdwEnv%2CdwPrizeLv%2CdwPrizeType%2Cptag%2Csource%2CstrPrizePool%2CstrZone&_ste=1`)
-            console.log("签到", $.source.sErrMsg)
-        }
-    }
+    await GetTakeAggrPage()
     // 找导游
     await EmployTourGuide()
     // 捡破烂 珍珠
@@ -117,6 +109,27 @@ async function main() {
     await GetUserTask()
     // 宝箱
     await GetActTask()
+}
+async function GetTakeAggrPage() {
+    await work(`https://m.jingxi.com/jxbfd/story/GetTakeAggrPage?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrZone&_ste=1`, 'GetTakeAggrPage')
+    // 签到
+    if ($.haskey($.GetTakeAggrPage, 'Data.Sign.SignList')) {
+        SignList = $.GetTakeAggrPage.Data.Sign.SignList
+        getSign = SignList[$.GetTakeAggrPage.Data.Sign.dwTodayId - 1]
+        if (getSign.dwStatus == 0) {
+            await work(`https://m.jingxi.com/jxbfd/story/RewardSign?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&ddwCoin=${getSign.ddwCoin}&ddwMoney=${getSign.ddwMoney}&dwPrizeType=${getSign.dwPrizeType}&strPrizePool=${getSign.strPrizePool}&dwPrizeLv=${getSign.dwBingoLevel}&_stk=_cfd_t%2CbizCode%2CddwCoin%2CddwMoney%2CdwEnv%2CdwPrizeLv%2CdwPrizeType%2Cptag%2Csource%2CstrPrizePool%2CstrZone&_ste=1`)
+            console.log("签到", $.source.sErrMsg)
+        }
+    }
+    // 获取助力奖励
+    if ($.haskey($.GetTakeAggrPage, 'Data.Employee.EmployeeList')) {
+        for (let i of $.GetTakeAggrPage.Data.Employee.EmployeeList) {
+            if (i.dwStatus == 0) {
+                await work(`https://m.jingxi.com/jxbfd/story/helpdraw?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&dwUserId=${i.dwId}&_stk=_cfd_t%2CbizCode%2CdwEnv%2CdwUserId%2Cptag%2Csource%2CstrZone&_ste=1`)
+                console.log("朋友赞助:", $.source.sErrMsg)
+            }
+        }
+    }
 }
 async function GetUserTask() {
     // 任务列表
@@ -231,6 +244,7 @@ async function ComposeGame() {
     // 撸珍珠
     await work(`https://m.jingxi.com/jxbfd/user/ComposeGameState?__t=${$.timestamp}&strZone=jxbfd&dwFirst=1&_=${$.timestamp}&sceneval=2&g_login_type=1&callback=jsonpCBKA&g_ty=ls`, 'ComposeGameState')
     if ($.ComposeGameState.dwCurProgress < 8) {
+        console.log("珍珠任务")
         for (let i of Array(10 - $.ComposeGameState.dwCurProgress)) {
             console.log("等待上报")
             await $.wait($.rand(5000, 9999))
