@@ -6,7 +6,7 @@
 
 鉴于某面板功能比较不人性化,无法直接拉取,可以试下以下命令
 
-``` rm -rf airacg.zip && rm -rf jd_task-main && wget https://github.com/airacg/jd_task/archive/refs/heads/main.zip -O airacg.zip && unzip airacg.zip && cp -avfp ./jd_task-main/* ./ ```
+``` rm -rf jd_task.zip && rm -rf jd_task-main && wget https://github.com/airacg/jd_task/archive/refs/heads/main.zip -O airacg.zip && unzip jd_task.zip && cp -avfp ./jd_task-main/* ./ ```
 
 
 此模块助力逻辑:所有账户会去助力前面的主号,而不是所有账户轮流助力
