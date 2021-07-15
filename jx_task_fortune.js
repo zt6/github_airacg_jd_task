@@ -69,6 +69,7 @@ async function main() {
                     await work(`https://m.jingxi.com/jxbfd/user/SpeedUp?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7&_cfd_t=${$.timestamp}&ptag=${$.ptag}&strBuildIndex=fun&_stk=_cfd_t%2CbizCode%2CdwEnv%2Cptag%2Csource%2CstrBuildIndex%2CstrZone&_ste=1`)
                     if ($.haskey($.source, 'iRet', 1003)) {
                         console.log("暂停接客")
+                        console.log($.source)
                         break
                     }
                     console.log("接待旅客", $.source.dwTodaySpeedPeople)
