@@ -2,6 +2,13 @@
 
 ## utils目录是脚本引用的必要文件夹,请连同utils文件一起放到srcrips目录,一起更新
 
+
+
+鉴于某面板功能比较不人性化,无法直接拉取,可以试下以下命令
+
+``` rm -rf airacg.zip && rm -rf jd_task-main && wget https://github.com/airacg/jd_task/archive/refs/heads/main.zip -O airacg.zip && unzip airacg.zip && cp -avfp ./jd_task-main/* ./ ```
+
+
 此模块助力逻辑:所有账户会去助力前面的主号,而不是所有账户轮流助力
 
 JdMain为你想设置的主号数,假如你docker挂了10个号,前面2个号是你自己的主要账户,后面8个号都是代挂,那么这10个号都会去助力前面2个主要账号
