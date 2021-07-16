@@ -4,10 +4,25 @@
 
 
 
-鉴于某面板功能比较不人性化,无法直接拉取,可以试下以下命令
 
-```  rm -rf jd_task.zip && rm -rf jd_task-main && wget https://github.com/airacg/jd_task/archive/refs/heads/main.zip -O jd_task.zip && unzip jd_task.zip && cp -avfp ./jd_task-main/* ./ ```
+鉴于某些面板功能比缺失不完善,无法直接拉取.直接用git命令可能有点问题,可以试下以下命令
 
+```
+cd /root/ql/scripts
+rm -rf jd_task.zip
+rm -rf jd_task-main
+wget https://github.com/airacg/jd_task/archive/refs/heads/main.zip -O jd_task.zip
+unzip jd_task.zip
+cp -avfp ./jd_task-main/* ./
+rm -rf jd_task.zip
+rm -rf jd_task-main
+
+```
+或者,面板添加定时任务
+
+```
+bash ./scripts/jd_task.sh
+```
 
 此模块助力逻辑:所有账户会去助力前面的主号,而不是所有账户轮流助力
 
@@ -21,13 +36,13 @@ JdMain为你想设置的主号数,假如你docker挂了10个号,前面2个号是
 
 ### 全局助力次数: JdMain (_help_xxx)
 
-export JdMain = 2  
+export JdMain = 2
 
- 
+
 
 ### 单任务助力次数: filename(单独设置某个任务助力个数)
 
 export jd_help_grapbean = 3
 
 
- 
+
