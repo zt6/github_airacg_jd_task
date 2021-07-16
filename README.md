@@ -4,7 +4,7 @@
 
 
 
-鉴于某面板功能比较不人性化,无法直接拉取,可以试下以下命令
+鉴于某面板功能比较不人性化,无法直接拉取.直接用git命令可能有点问题,可以试下以下命令
 
 ```  rm -rf jd_task.zip && rm -rf jd_task-main && wget https://github.com/airacg/jd_task/archive/refs/heads/main.zip -O jd_task.zip && unzip jd_task.zip && cp -avfp ./jd_task-main/* ./ ```
 
