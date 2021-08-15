@@ -1,26 +1,8 @@
 # jd_task
 
-## utils目录是脚本引用的必要文件夹,请连同utils文件一起放到srcrips目录,一起更新
+## function目录是脚本引用的必要文件夹,请连同function文件一起放到srcrips目录,一起更新
 
 
-鉴于某些面板功能比缺失不完善,无法直接拉取.直接用git命令可能有点问题,可以试下以下命令
-
-```
-cd /root/ql/scripts
-rm -rf jd_task.zip
-rm -rf jd_task-main
-wget https://github.com/airacg/jd_task/archive/refs/heads/main.zip -O jd_task.zip
-unzip jd_task.zip
-cp -avfp ./jd_task-main/* ./
-rm -rf jd_task.zip
-rm -rf jd_task-main
-
-```
-或者,面板添加定时任务
-
-```
-bash ./scripts/jd_task.sh
-```
 
 此模块助力逻辑:所有账户会去助力前面的主号,而不是所有账户轮流助力
 
@@ -40,7 +22,7 @@ export JdMain = 2
 
 ### 单任务助力次数: filename(单独设置某个任务助力个数)
 
-export jd_help_grapbean = 3
+export jd-help-grapbean = 3
 
 
 
