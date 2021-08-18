@@ -16,6 +16,7 @@ function mainEval($) {
             console.log('助力码', $.sharecode )
         }
     }catch(e1){console.log("初始函数不存在,将继续执行主函数Main\\n")}
+    if(typeof(main) != 'undefined'){
     try{
         for (let i = 0; i < taskCookie.filter(d => d).length; i++) {
             $.cookie = taskCookie[i];
@@ -46,6 +47,7 @@ function mainEval($) {
 
         }
     }catch(em){console.log(em.message)}
+    }
     if (typeof(extra) != 'undefined') {
         console.log(\`============================开始运行额外任务============================\`)
         try{
