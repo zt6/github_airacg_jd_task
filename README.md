@@ -12,7 +12,7 @@ JdMain为你想设置的主号数,假如你docker挂了10个号,前面2个号是
 
 如果都没添加,那么会根据脚本中的min参数来设置主要助力个数
 
-如需排除账号做某一个任务,只需在全局变量filene_except中添加账户pt_pin,用","隔开; 比如export jd_help_test_except = 'pt_pin1,pt_pin2'
+如需排除账号做某一个任务,只需在全局变量filename_except中添加账户pt_pin,用","隔开;比如export jd_help_test_except = 'pt_pin1,pt_pin2'
 
 
 ### 全局助力次数: JdMain (_help_xxx)
