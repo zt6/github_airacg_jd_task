@@ -56,7 +56,7 @@ class env {
             return JSON.parse(str);
         } catch (e) {
             try {
-                data = this.match([/try\s*\{\w+\s*\(([^\)]+)/, /\w+\s*\(([^\)]+)/], str)
+                let data = this.match([/try\s*\{\w+\s*\(([^\)]+)/, /\w+\s*\(([^\)]+)/], str)
                 return JSON.parse(data);
             } catch (ee) {
                 try {
