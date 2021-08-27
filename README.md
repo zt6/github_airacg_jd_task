@@ -1,4 +1,4 @@
-# jd_task
+# jd_task   有问题直接进[TG群](https://t.me/joinchat/urPHDY_HwoQ5OTAx),别发ISSUES
 
 ## function目录是脚本引用的必要文件夹,请连同function文件一起放到srcrips目录,一起更新
 
