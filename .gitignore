@@ -1,3 +1,5 @@
 /node_modules/
 !.gitignore
 /function/user.js
+.DS_Store
+.DS_Store
