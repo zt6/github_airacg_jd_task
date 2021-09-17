@@ -6,7 +6,7 @@ $.setOptions({
     headers: {
         'content-type': 'application/json',
         'user-agent': 'jdapp;iPhone;10.1.4;13.7;7b01d4690ef13716984dcfcf96068f36b41f6c51;network/wifi;model/iPhone8,1;addressid/1518509182;appBuild/167814;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
-        'referer': 'https://ddsj-dz.isvjcloud.com/dd-world/?lng=117.612992&lat=23.940163&sid=bc2e4537dd41e6341367b7d435e29acw&un_area=16_1341_1347_44750',
+        'referer': 'https://ddsj-dz.isvjcloud.com/dd-world/',
     }
 });
 eval(common.eval.mainEval($));
@@ -25,8 +25,7 @@ async function main(id) {
         'form': `token=${$.isvObfuscator.token}&source=01`,
         cookie: `IsvToken=${$.genToken.tokenKey};`
     })
-    $.authorization = `Bearer ${$.source.access_token}`
-    $.options.headers.Authorization = $.authorization
+    $.options.headers.Authorization =  `Bearer ${$.source.access_token}`
     await $.curl("https://ddsj-dz.isvjcloud.com/dd-api/get_task")
     common.assert($.source.success, "账户脸黑")
     for (let i of $.source.result.taskVos || []) {
